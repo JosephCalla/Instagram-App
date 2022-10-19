@@ -38,6 +38,8 @@
 		72BDC6D228FF5D3800453E91 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 72BDC6D128FF5D3800453E91 /* FirebaseDatabase */; };
 		72BDC6D428FF5D3800453E91 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 72BDC6D328FF5D3800453E91 /* FirebaseRemoteConfig */; };
 		72BDC6D628FF5D3800453E91 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 72BDC6D528FF5D3800453E91 /* FirebaseStorage */; };
+		72BDC6D828FF69B900453E91 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 72BDC6D728FF69B900453E91 /* GoogleService-Info.plist */; };
+		72BDC6DB28FF6B5A00453E91 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 72BDC6DA28FF6B5A00453E91 /* FirebaseFirestore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +70,7 @@
 		72BDC6C428FF5BAD00453E91 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		72BDC6C628FF5BBB00453E91 /* AnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
 		72BDC6C828FF5BC400453E91 /* HapticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsManager.swift; sourceTree = "<group>"; };
+		72BDC6D728FF69B900453E91 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +84,7 @@
 				72BDC6CE28FF5D3800453E91 /* FirebaseAuth in Frameworks */,
 				72BDC6D428FF5D3800453E91 /* FirebaseRemoteConfig in Frameworks */,
 				72BDC6D628FF5D3800453E91 /* FirebaseStorage in Frameworks */,
+				72BDC6DB28FF6B5A00453E91 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +96,7 @@
 			children = (
 				72BDC68528FF53F700453E91 /* Instagram-App */,
 				72BDC68428FF53F700453E91 /* Products */,
+				72BDC6D928FF6B5A00453E91 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -147,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				72BDC68F28FF53F800453E91 /* Assets.xcassets */,
+				72BDC6D728FF69B900453E91 /* GoogleService-Info.plist */,
 				72BDC68628FF53F700453E91 /* AppDelegate.swift */,
 				72BDC68828FF53F700453E91 /* SceneDelegate.swift */,
 			);
@@ -200,6 +206,13 @@
 			path = Other;
 			sourceTree = "<group>";
 		};
+		72BDC6D928FF6B5A00453E91 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -223,6 +236,7 @@
 				72BDC6D128FF5D3800453E91 /* FirebaseDatabase */,
 				72BDC6D328FF5D3800453E91 /* FirebaseRemoteConfig */,
 				72BDC6D528FF5D3800453E91 /* FirebaseStorage */,
+				72BDC6DA28FF6B5A00453E91 /* FirebaseFirestore */,
 			);
 			productName = "Instagram-App";
 			productReference = 72BDC68328FF53F700453E91 /* Instagram-App.app */;
@@ -271,6 +285,7 @@
 			files = (
 				72BDC69328FF53F800453E91 /* LaunchScreen.storyboard in Resources */,
 				72BDC69028FF53F800453E91 /* Assets.xcassets in Resources */,
+				72BDC6D828FF69B900453E91 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -563,6 +578,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 72BDC6CA28FF5D3800453E91 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		72BDC6DA28FF6B5A00453E91 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 72BDC6CA28FF5D3800453E91 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
