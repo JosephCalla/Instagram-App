@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		72319E552900371000DE43F9 /* SignInHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72319E542900371000DE43F9 /* SignInHeaderView.swift */; };
+		72319E5729003DBD00DE43F9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72319E5629003DBD00DE43F9 /* Extensions.swift */; };
+		72319E592900503F00DE43F9 /* IGTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72319E582900503F00DE43F9 /* IGTextField.swift */; };
 		72BDC68728FF53F700453E91 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BDC68628FF53F700453E91 /* AppDelegate.swift */; };
 		72BDC68928FF53F700453E91 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BDC68828FF53F700453E91 /* SceneDelegate.swift */; };
 		72BDC68B28FF53F700453E91 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BDC68A28FF53F700453E91 /* HomeViewController.swift */; };
@@ -43,6 +46,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		72319E542900371000DE43F9 /* SignInHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInHeaderView.swift; sourceTree = "<group>"; };
+		72319E5629003DBD00DE43F9 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		72319E582900503F00DE43F9 /* IGTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGTextField.swift; sourceTree = "<group>"; };
 		72BDC68328FF53F700453E91 /* Instagram-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Instagram-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		72BDC68628FF53F700453E91 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		72BDC68828FF53F700453E91 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -126,6 +132,8 @@
 			isa = PBXGroup;
 			children = (
 				72BDC69128FF53F800453E91 /* LaunchScreen.storyboard */,
+				72319E542900371000DE43F9 /* SignInHeaderView.swift */,
+				72319E582900503F00DE43F9 /* IGTextField.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -152,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				72BDC68F28FF53F800453E91 /* Assets.xcassets */,
+				72319E5629003DBD00DE43F9 /* Extensions.swift */,
 				72BDC6D728FF69B900453E91 /* GoogleService-Info.plist */,
 				72BDC68628FF53F700453E91 /* AppDelegate.swift */,
 				72BDC68828FF53F700453E91 /* SceneDelegate.swift */,
@@ -309,12 +318,15 @@
 				72BDC6B928FF5B4A00453E91 /* User.swift in Sources */,
 				72BDC6A628FF5A8400453E91 /* NotificationViewController.swift in Sources */,
 				72BDC6AF28FF5AEC00453E91 /* SignUpViewController.swift in Sources */,
+				72319E552900371000DE43F9 /* SignInHeaderView.swift in Sources */,
 				72BDC68B28FF53F700453E91 /* HomeViewController.swift in Sources */,
+				72319E592900503F00DE43F9 /* IGTextField.swift in Sources */,
 				72BDC6C328FF5BA300453E91 /* DatabaseManager.swift in Sources */,
 				72BDC6BD28FF5B6600453E91 /* Relationship.swift in Sources */,
 				72BDC6BB28FF5B5200453E91 /* Post.swift in Sources */,
 				72BDC6C128FF5B8800453E91 /* AuthManager.swift in Sources */,
 				72BDC6AD28FF5ACC00453E91 /* SignInViewController.swift in Sources */,
+				72319E5729003DBD00DE43F9 /* Extensions.swift in Sources */,
 				72BDC6A828FF5A9100453E91 /* ProfileViewController.swift in Sources */,
 				72BDC6C928FF5BC400453E91 /* HapticsManager.swift in Sources */,
 				72BDC68728FF53F700453E91 /* AppDelegate.swift in Sources */,
