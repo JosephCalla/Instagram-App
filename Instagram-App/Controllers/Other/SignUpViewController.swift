@@ -46,7 +46,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         return field
     }()
     
-    private let signInButton: UIButton = {
+    private let signUpButton: UIButton = {
         let button = UIButton()
         button.setTitle("Sign Up", for: .normal)
         button.backgroundColor = .systemGreen
@@ -68,6 +68,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         button.setTitleColor(.link, for: .normal)
         return button
     }()
+    
+    public var completion: (() -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -107,14 +109,14 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
                                      width: view.width-50,
                                      height: 50)
         
-        signInButton.frame = CGRect(x: 25,
+        signUpButton.frame = CGRect(x: 25,
                                     y: passwordField.buttom+20,
                                     width: view.width-50,
                                     height: 50)
         
         
         termsButton.frame = CGRect(x: 25,
-                                   y: signInButton.buttom+50,
+                                   y: signUpButton.buttom+50,
                                    width: view.width-50,
                                    height: 50)
         
@@ -130,13 +132,13 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
         view.addSubview(usernameField)
         view.addSubview(emailField)
         view.addSubview(passwordField)
-        view.addSubview(signInButton)
+        view.addSubview(signUpButton)
         view.addSubview(termsButton)
         view.addSubview(privacyButton)
     }
     
     private func addButtonActions() {
-        signInButton.addTarget(self, action: #selector(didTapSignIn), for: .touchUpInside)
+        signUpButton.addTarget(self, action: #selector(didTapSignUp), for: .touchUpInside)
         termsButton.addTarget(self, action: #selector(didTapTerms), for: .touchUpInside)
         privacyButton.addTarget(self, action: #selector(didTapPrivacy), for: .touchUpInside)
     }
@@ -148,7 +150,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     }
     
     // MARK: - Actions
-    @objc func didTapSignIn() {
+    @objc func didTapSignUp() {
         emailField.resignFirstResponder()
         passwordField.resignFirstResponder()
         
@@ -165,9 +167,28 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
             return
         }
         
-        // Sign in with authManager
-        let vc = HomeViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        let data = profilePictureImageView.image?.pngData()
+        // Sign Up with authManager
+        AuthManager.shared.signUp(email: email,
+                                  username: username,
+                                  password: password,
+                                  profilePicture: data) { [weak self] result in
+            DispatchQueue.main.async {
+                
+                switch result {
+                case .success(let user):
+                    UserDefaults.standard.set(user.email, forKey: "email")
+                    UserDefaults.standard.set(user.username, forKey: "username")
+                    
+                    self?.navigationController?.popToRootViewController(animated: true)
+                    self?.completion?()
+                    
+                case .failure(let error):
+                    print("\n\nSign Up Error: \(error.localizedDescription)")
+                    
+                }
+            }
+        }
     }
     
     private func presentError() {
@@ -232,7 +253,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIImagePicker
             passwordField.becomeFirstResponder()
         } else {
             textField.resignFirstResponder()
-            didTapSignIn()
+            didTapSignUp()
         }
         return true
     }

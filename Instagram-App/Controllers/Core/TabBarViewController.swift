@@ -27,10 +27,10 @@ class TabBarViewController: UITabBarController {
         
         // Define tab items
         nav1.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), tag: 1)
-        nav2.tabBarItem = UITabBarItem(title: "Explore", image: UIImage(systemName: "explore"), tag: 1)
+        nav2.tabBarItem = UITabBarItem(title: "Explore", image: UIImage(systemName: "location.circle"), tag: 1)
         nav3.tabBarItem = UITabBarItem(title: "Camera", image: UIImage(systemName: "camera"), tag: 1)
-        nav4.tabBarItem = UITabBarItem(title: "Activity", image: UIImage(systemName: "activity"), tag: 1)
-        nav5.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "profile"), tag: 1)
+        nav4.tabBarItem = UITabBarItem(title: "Activity", image: UIImage(systemName: "list.bullet.rectangle.portrait.fill"), tag: 1)
+        nav5.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person"), tag: 1)
         
         // Set Controllers
         self.setViewControllers([nav1, nav2, nav3, nav4,nav5], animated: false)
