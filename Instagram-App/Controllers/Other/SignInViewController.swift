@@ -131,6 +131,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         privacyButton.addTarget(self, action: #selector(didTapPrivacy), for: .touchUpInside)
         createAccountButton.addTarget(self, action: #selector(didTapCreateAccount), for: .touchUpInside)
     }
+    
     // MARK: - Actions
     @objc func didTapSignIn() {
         emailField.resignFirstResponder()
@@ -145,8 +146,24 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         }
         
         // Sign in with authManager
-        let vc = HomeViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        AuthManager.shared.signIn(email: email, password: password) { [weak self] result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success:
+                    let vc = TabBarViewController()
+                    vc.modalPresentationStyle = .fullScreen
+                    self?.present(vc, animated: true)
+                    
+                case .failure(let error):
+                    let alert = UIAlertController(title: "Sign In Failed", message: "We couldn't log in, please. Make sure to write the correct user or password", preferredStyle: .alert)
+                    
+                    alert.addAction(UIAlertAction(title: "Ok", style: .cancel))
+                    self?.present(alert, animated: true)
+                    
+                    print(error)
+                }
+            }
+        }
     }
     
     @objc func didTapCreateAccount() {
