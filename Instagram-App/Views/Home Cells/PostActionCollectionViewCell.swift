@@ -7,9 +7,19 @@
 
 import UIKit
 
+protocol PostActionCollectionViewCellDelegate: AnyObject {
+    func postActionCollectionViewCellDidTapLike(_ cell: PostActionCollectionViewCell, isLiked: Bool)
+    func postActionCollectionViewCellDidTapComment(_ cell: PostActionCollectionViewCell)
+    func postActionCollectionViewCellDidTapShare(_ cell: PostActionCollectionViewCell)
+}
+
 class PostActionCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "PostActionCollectionViewCell"
+    
+    weak var delegate: PostActionCollectionViewCellDelegate?
+    
+    private var isLiked = false
     
     private let likeButton: UIButton = {
         let button = UIButton()
@@ -57,15 +67,29 @@ class PostActionCollectionViewCell: UICollectionViewCell {
     }
     
     @objc func didTapLike() {
+        if self.isLiked {
+            let image = UIImage(systemName: "suit.heart",
+                                withConfiguration: UIImage.SymbolConfiguration(pointSize: 30))
+            likeButton.setImage(image, for: .normal)
+            likeButton.tintColor = .label
+        } else {
+                let image = UIImage(systemName: "suit.heart.fill",
+                                    withConfiguration: UIImage.SymbolConfiguration(pointSize: 30))
+                likeButton.setImage(image, for: .normal)
+                likeButton.tintColor = .systemRed
+        }
         
+        delegate?.postActionCollectionViewCellDidTapLike(self,
+                                                         isLiked: !isLiked)
+        self.isLiked = !isLiked
     }
     
     @objc func didTapComment() {
-        
+        delegate?.postActionCollectionViewCellDidTapComment(self)
     }
     
     @objc func didTapShare() {
-        
+        delegate?.postActionCollectionViewCellDidTapShare(self)
     }
     
     override func layoutSubviews() {
@@ -90,12 +114,7 @@ class PostActionCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(with viewModel: PostActionsCollectionViewCellViewModel) {
-        if viewModel.isLiked {
-            let image = UIImage(systemName: "suit.heart.fill",
-                                withConfiguration: UIImage.SymbolConfiguration(pointSize: 30))
-            likeButton.setImage(image, for: .normal)
-            likeButton.tintColor = .systemRed
-        }
+        isLiked = viewModel.isLiked
     }
 }
 
