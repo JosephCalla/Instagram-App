@@ -10,6 +10,13 @@
 		72319E552900371000DE43F9 /* SignInHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72319E542900371000DE43F9 /* SignInHeaderView.swift */; };
 		72319E5729003DBD00DE43F9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72319E5629003DBD00DE43F9 /* Extensions.swift */; };
 		72319E592900503F00DE43F9 /* IGTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72319E582900503F00DE43F9 /* IGTextField.swift */; };
+		72773605293D652300E11DEB /* PosterColletionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72773604293D652300E11DEB /* PosterColletionViewCellViewModel.swift */; };
+		72773607293D657600E11DEB /* PostCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72773606293D657600E11DEB /* PostCollectionViewCellViewModel.swift */; };
+		72773609293D65A400E11DEB /* PostActionsCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72773608293D65A400E11DEB /* PostActionsCollectionViewCellViewModel.swift */; };
+		7277360B293D65E300E11DEB /* PostLikesCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7277360A293D65E300E11DEB /* PostLikesCollectionViewCellViewModel.swift */; };
+		7277360D293D664600E11DEB /* PostCaptionCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7277360C293D664600E11DEB /* PostCaptionCollectionViewCellViewModel.swift */; };
+		7277360F293D667200E11DEB /* PostDatetimeCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7277360E293D667200E11DEB /* PostDatetimeCollectionViewCellViewModel.swift */; };
+		72773612293D675500E11DEB /* HomeFeedCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72773611293D675500E11DEB /* HomeFeedCellType.swift */; };
 		72BDC68728FF53F700453E91 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BDC68628FF53F700453E91 /* AppDelegate.swift */; };
 		72BDC68928FF53F700453E91 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BDC68828FF53F700453E91 /* SceneDelegate.swift */; };
 		72BDC68B28FF53F700453E91 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BDC68A28FF53F700453E91 /* HomeViewController.swift */; };
@@ -49,6 +56,13 @@
 		72319E542900371000DE43F9 /* SignInHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInHeaderView.swift; sourceTree = "<group>"; };
 		72319E5629003DBD00DE43F9 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		72319E582900503F00DE43F9 /* IGTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGTextField.swift; sourceTree = "<group>"; };
+		72773604293D652300E11DEB /* PosterColletionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterColletionViewCellViewModel.swift; sourceTree = "<group>"; };
+		72773606293D657600E11DEB /* PostCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
+		72773608293D65A400E11DEB /* PostActionsCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostActionsCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
+		7277360A293D65E300E11DEB /* PostLikesCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostLikesCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
+		7277360C293D664600E11DEB /* PostCaptionCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCaptionCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
+		7277360E293D667200E11DEB /* PostDatetimeCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDatetimeCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
+		72773611293D675500E11DEB /* HomeFeedCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeedCellType.swift; sourceTree = "<group>"; };
 		72BDC68328FF53F700453E91 /* Instagram-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Instagram-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		72BDC68628FF53F700453E91 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		72BDC68828FF53F700453E91 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -141,6 +155,12 @@
 		72BDC69B28FF55F000453E91 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				72773604293D652300E11DEB /* PosterColletionViewCellViewModel.swift */,
+				72773606293D657600E11DEB /* PostCollectionViewCellViewModel.swift */,
+				72773608293D65A400E11DEB /* PostActionsCollectionViewCellViewModel.swift */,
+				7277360A293D65E300E11DEB /* PostLikesCollectionViewCellViewModel.swift */,
+				7277360C293D664600E11DEB /* PostCaptionCollectionViewCellViewModel.swift */,
+				7277360E293D667200E11DEB /* PostDatetimeCollectionViewCellViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -152,6 +172,7 @@
 				72BDC6BA28FF5B5200453E91 /* Post.swift */,
 				72BDC6BC28FF5B6600453E91 /* Relationship.swift */,
 				72BDC6BE28FF5B7200453E91 /* Notification.swift */,
+				72773611293D675500E11DEB /* HomeFeedCellType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -192,8 +213,8 @@
 		72BDC6A028FF5A5100453E91 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				72BDC6A928FF5AB200453E91 /* TabBarViewController.swift */,
 				72BDC68A28FF53F700453E91 /* HomeViewController.swift */,
+				72BDC6A928FF5AB200453E91 /* TabBarViewController.swift */,
 				72BDC6A128FF5A6700453E91 /* ExploreViewController.swift */,
 				72BDC6A328FF5A7900453E91 /* CameraViewController.swift */,
 				72BDC6A528FF5A8400453E91 /* NotificationViewController.swift */,
@@ -310,19 +331,26 @@
 				72BDC6BF28FF5B7200453E91 /* Notification.swift in Sources */,
 				72BDC6C528FF5BAD00453E91 /* StorageManager.swift in Sources */,
 				72BDC6B328FF5B1600453E91 /* ListViewController.swift in Sources */,
+				72773609293D65A400E11DEB /* PostActionsCollectionViewCellViewModel.swift in Sources */,
 				72BDC6B528FF5B1D00453E91 /* PostViewController.swift in Sources */,
 				72BDC6A228FF5A6700453E91 /* ExploreViewController.swift in Sources */,
 				72BDC6B728FF5B2500453E91 /* SettingViewController.swift in Sources */,
 				72BDC6C728FF5BBB00453E91 /* AnalyticsManager.swift in Sources */,
 				72BDC6A428FF5A7900453E91 /* CameraViewController.swift in Sources */,
 				72BDC6B928FF5B4A00453E91 /* User.swift in Sources */,
+				72773605293D652300E11DEB /* PosterColletionViewCellViewModel.swift in Sources */,
 				72BDC6A628FF5A8400453E91 /* NotificationViewController.swift in Sources */,
+				7277360F293D667200E11DEB /* PostDatetimeCollectionViewCellViewModel.swift in Sources */,
 				72BDC6AF28FF5AEC00453E91 /* SignUpViewController.swift in Sources */,
 				72319E552900371000DE43F9 /* SignInHeaderView.swift in Sources */,
 				72BDC68B28FF53F700453E91 /* HomeViewController.swift in Sources */,
 				72319E592900503F00DE43F9 /* IGTextField.swift in Sources */,
+				72773612293D675500E11DEB /* HomeFeedCellType.swift in Sources */,
+				7277360B293D65E300E11DEB /* PostLikesCollectionViewCellViewModel.swift in Sources */,
+				72773607293D657600E11DEB /* PostCollectionViewCellViewModel.swift in Sources */,
 				72BDC6C328FF5BA300453E91 /* DatabaseManager.swift in Sources */,
 				72BDC6BD28FF5B6600453E91 /* Relationship.swift in Sources */,
+				7277360D293D664600E11DEB /* PostCaptionCollectionViewCellViewModel.swift in Sources */,
 				72BDC6BB28FF5B5200453E91 /* Post.swift in Sources */,
 				72BDC6C128FF5B8800453E91 /* AuthManager.swift in Sources */,
 				72BDC6AD28FF5ACC00453E91 /* SignInViewController.swift in Sources */,
