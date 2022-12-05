@@ -10,12 +10,13 @@ import UIKit
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     private var collectionView: UICollectionView?
-    
+    private var viewModels = [[HomeFeedCellType]]()
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Instagram"
         view.backgroundColor = .systemBackground
         configureCollectionView()
+        fetchPosts()
     }
     
     override func viewDidLayoutSubviews() {
@@ -23,6 +24,41 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         collectionView?.frame = view.bounds
     }
     
+    private func fetchPosts() {
+        // Mock Data
+        let postData: [HomeFeedCellType] = [
+            .poster(viewModel: PosterCollectionViewCellViewModel(
+                username: "Joseph",
+                profilePictureURL: URL(string: "https://www.apple.com")!
+                )
+            ),
+            .post(viewModel: PostCollectionViewCellViewModel(
+                postURL: URL(string: "https://www.apple.com")!
+                )
+            ),
+            .actions(viewModel: PostActionsCollectionViewCellViewModel(isLiked: true)),
+            .likeCount(viewModel: PostLikesCollectionViewCellViewModel(likers: ["Girls :)"])),
+            .caption(viewModel: PostCaptionCollectionViewCellViewModel(username: "Joseph", caption: "Fist Post")),
+            .timestamp(viewModel: PostDatetimeCollectionViewCellViewModel(date: Date()))
+        ]
+        
+        viewModels.append(postData)
+        collectionView?.reloadData()
+    }
+    
+    let colors: [UIColor] = [
+        .red,
+        .green,
+        .blue,
+        .yellow,
+        .systemPink,
+        .orange
+    ]
+    
+}
+
+extension HomeViewController {
+    // CollectionView
     private func configureCollectionView() {
         let sectionHeight: CGFloat = 240 + view.width
         
@@ -60,7 +96,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                                                                    ])
             // Section
             let section = NSCollectionLayoutSection(group: group)
-            section.contentInsets = NSDirectionalEdgeInsets(top: 3, leading: 0, bottom: 10, trailing: 0)            
+            section.contentInsets = NSDirectionalEdgeInsets(top: 3, leading: 0, bottom: 10, trailing: 0)
             return section
         }))
         
@@ -72,28 +108,34 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         self.collectionView = collectionView
     }
     
-    // CollectionView
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 3
+        return viewModels.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 6
+        return viewModels[section].count
     }
-    let colors: [UIColor] = [
-        .red,
-        .green,
-        .blue,
-        .yellow,
-        .systemPink,
-        .orange
-    ]
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cellType = viewModels[indexPath.section][indexPath.row]
+        
+        switch cellType {
+        case .poster(let viewModel):
+            break
+        case .post(let viewModel):
+            break
+        case .actions(let viewModel):
+            break
+        case .likeCount(let viewModel):
+            break
+        case .caption(let viewModel):
+            break
+        case .timestamp(let viewModel):
+            break
+        }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
         cell.contentView.backgroundColor = colors[indexPath.row]
         return cell
         
     }
 }
-
