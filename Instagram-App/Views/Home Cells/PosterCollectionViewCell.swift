@@ -8,8 +8,15 @@
 import SDWebImage
 import UIKit
 
+protocol PosterCollectionViewCellDelegate: AnyObject {
+    func posterCollectionViewCellDelegateDidTapMore(_ cell: PosterCollectionViewCell)
+    func posterCollectionViewCellDelegateDidTapUsername(_ cell: PosterCollectionViewCell)
+}
+
 final class PosterCollectionViewCell: UICollectionViewCell {
     static let identifier = "PosterCollectionViewCell"
+    
+    weak var delegate: PosterCollectionViewCellDelegate?
     
     private let imageView: UIImageView = {
       let imageView = UIImageView()
@@ -61,6 +68,11 @@ final class PosterCollectionViewCell: UICollectionViewCell {
                                      height: usernameLabel.height)
         
         moreButton.frame = CGRect(x: contentView.width-55, y: (contentView.height-55)/2, width: 50, height: 50)
+        
+        usernameLabel.isUserInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapUsername))
+        usernameLabel.addGestureRecognizer(tap)
+        
     }
     
     override func prepareForReuse() {
@@ -74,7 +86,11 @@ final class PosterCollectionViewCell: UICollectionViewCell {
         imageView.sd_setImage(with: viewModel.profilePictureURL)
     }
     
+    @objc func didTapUsername() {
+        delegate?.posterCollectionViewCellDelegateDidTapUsername(self)
+    }
+    
     @objc func didTapMore() {
-        
+        delegate?.posterCollectionViewCellDelegateDidTapMore(self)
     }
 }
