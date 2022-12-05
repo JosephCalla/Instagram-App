@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7217AB00293EA86E0035640E /* PostEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7217AAFF293EA86E0035640E /* PostEditViewController.swift */; };
 		72319E552900371000DE43F9 /* SignInHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72319E542900371000DE43F9 /* SignInHeaderView.swift */; };
 		72319E5729003DBD00DE43F9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72319E5629003DBD00DE43F9 /* Extensions.swift */; };
 		72319E592900503F00DE43F9 /* IGTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72319E582900503F00DE43F9 /* IGTextField.swift */; };
@@ -60,6 +61,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7217AAFF293EA86E0035640E /* PostEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostEditViewController.swift; sourceTree = "<group>"; };
 		72319E542900371000DE43F9 /* SignInHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInHeaderView.swift; sourceTree = "<group>"; };
 		72319E5629003DBD00DE43F9 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		72319E582900503F00DE43F9 /* IGTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGTextField.swift; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 				72BDC6A928FF5AB200453E91 /* TabBarViewController.swift */,
 				72BDC6A128FF5A6700453E91 /* ExploreViewController.swift */,
 				72BDC6A328FF5A7900453E91 /* CameraViewController.swift */,
+				7217AAFF293EA86E0035640E /* PostEditViewController.swift */,
 				72BDC6A528FF5A8400453E91 /* NotificationViewController.swift */,
 				72BDC6A728FF5A9100453E91 /* ProfileViewController.swift */,
 			);
@@ -382,6 +385,7 @@
 				7277360B293D65E300E11DEB /* PostLikesCollectionViewCellViewModel.swift in Sources */,
 				72773607293D657600E11DEB /* PostCollectionViewCellViewModel.swift in Sources */,
 				72BDC6C328FF5BA300453E91 /* DatabaseManager.swift in Sources */,
+				7217AB00293EA86E0035640E /* PostEditViewController.swift in Sources */,
 				72773619293D71F400E11DEB /* PostActionCollectionViewCell.swift in Sources */,
 				7277361B293D721300E11DEB /* PostCaptionCollectionViewCell.swift in Sources */,
 				72BDC6BD28FF5B6600453E91 /* Relationship.swift in Sources */,

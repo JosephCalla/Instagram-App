@@ -13,37 +13,60 @@ class CameraViewController: UIViewController {
     private var output = AVCapturePhotoOutput()
     private var captureSession: AVCaptureSession?
     private let previewLayer = AVCaptureVideoPreviewLayer()
-
+    
+    private let cameraView = UIView()
+    
+    private let shutterButton: UIButton = {
+        let button = UIButton()
+        button.layer.masksToBounds = true
+        button.layer.borderWidth = 2
+        button.layer.borderColor = UIColor.label.cgColor
+        button.backgroundColor = nil
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
         title = "Take Photo"
+        view.addSubview(cameraView)
+        view.addSubview(shutterButton)
         setupNavBar()
         checkCameraPermission()
+        shutterButton.addTarget(self, action: #selector(didTapTakePhoto), for: .touchUpInside)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         tabBarController?.tabBar.isHidden = true
+        
+        if let session = captureSession, !session.isRunning {
+            session.startRunning()
+        }
     }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         captureSession?.stopRunning()
-        //
-        //        if let session = captureSession, !session.isRunning {
-        //            session.startRunning()
-        //        }
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
+        cameraView.frame = view.bounds
         previewLayer.frame = CGRect(
             x: 0,
             y: view.safeAreaInsets.top,
             width: view.width,
             height: view.width
         )
+        
+        let buttonSize: CGFloat = view.width/5
+        shutterButton.frame = CGRect(
+            x: (view.width-buttonSize)/2,
+            y: view.safeAreaInsets.top + view.width + 100,
+            width: buttonSize,
+            height: buttonSize
+        )
+        shutterButton.layer.cornerRadius = buttonSize/2
     }
     
     @objc func didTapClose() {
@@ -51,15 +74,18 @@ class CameraViewController: UIViewController {
         tabBarController?.tabBar.isHidden = false
     }
     
+    @objc func didTapTakePhoto() {
+        // Conform the capturePhotoSetting protocol here in our class (Delegate pattern)
+        output.capturePhoto(with: AVCapturePhotoSettings(),
+                            delegate: self)
+    }
+    
     private func setupNavBar() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close,
-                                                           target: self,
-                                                           action: #selector(didTapClose))
-        
-        //        navigationController?.navigationBar.setBackgroundImage(UIImage(),
-        //                                                               for: UIBarMetrics.default)
-        //        navigationController?.navigationController?.navigationBar.shadowImage = UIImage()
-        //        navigationController?.navigationBar.backgroundColor = .clear
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .close,
+            target: self,
+            action: #selector(didTapClose)
+        )
     }
     
     private func checkCameraPermission() {
@@ -103,10 +129,29 @@ class CameraViewController: UIViewController {
             // Layer
             previewLayer.session = captureSession
             previewLayer.videoGravity = .resizeAspectFill
-            view.layer.addSublayer(previewLayer)
-            
-            captureSession.startRunning()
+            cameraView.layer.addSublayer(previewLayer)
+            DispatchQueue.global(qos: .background).async {
+                captureSession.startRunning()
+            }
         }
     }
     
+}
+
+
+extension CameraViewController: AVCapturePhotoCaptureDelegate {
+    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+        guard let data = photo.fileDataRepresentation(),
+              let image = UIImage(data: data) else {
+            return
+        }
+        
+        captureSession?.stopRunning()
+
+        let vc = PostEditViewController(image: image)
+        if #available(iOS 14.0, *) {
+            vc.navigationItem.backButtonDisplayMode = .minimal
+        } 
+        navigationController?.pushViewController(vc, animated: false)
+    }
 }
