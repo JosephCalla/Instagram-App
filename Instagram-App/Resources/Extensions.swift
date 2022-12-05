@@ -48,6 +48,7 @@ extension Decodable {
         self = result
     }
 }
+
 extension Encodable {
     func asDictionary() -> [String: Any]? {
         guard let data = try? JSONEncoder().encode(self) else {
@@ -57,5 +58,22 @@ extension Encodable {
         let json = try? JSONSerialization.jsonObject(with: data,
                                                      options: .allowFragments) as? [String: Any]
         return json
+    }
+}
+
+extension DateFormatter {
+    static let formatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .short
+        return formatter
+    }()
+}
+
+extension String {
+    static func date(from date: Date) -> String? {
+        let formatter = DateFormatter.formatter
+        let string = formatter.string(from: date)
+        return string
     }
 }

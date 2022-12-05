@@ -131,8 +131,8 @@
 				72773614293D70F600E11DEB /* PosterCollectionViewCell.swift */,
 				72773616293D71DC00E11DEB /* PostCollectionViewCell.swift */,
 				72773618293D71F400E11DEB /* PostActionCollectionViewCell.swift */,
-				7277361A293D721300E11DEB /* PostCaptionCollectionViewCell.swift */,
 				7277361E293D735200E11DEB /* PostLikesCollectionViewCell.swift */,
+				7277361A293D721300E11DEB /* PostCaptionCollectionViewCell.swift */,
 				7277361C293D722800E11DEB /* PostDateCollectionViewCell.swift */,
 			);
 			path = "Home Cells";

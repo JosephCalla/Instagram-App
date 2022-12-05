@@ -10,10 +10,17 @@ import UIKit
 class PostDateCollectionViewCell: UICollectionViewCell {
     static let identifier = "PostDateCollectionViewCell"
     
+    private let label: UILabel = {
+       let label = UILabel()
+        label.numberOfLines = 1
+        return label
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.clipsToBounds = true
-        contentView.backgroundColor = .systemBackground
+        contentView.backgroundColor = .secondaryLabel
+        contentView.addSubview(label)
     }
     
     required init?(coder: NSCoder) {
@@ -22,14 +29,17 @@ class PostDateCollectionViewCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        label.frame = contentView.bounds
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        label.text = nil
     }
     
     func configure(with viewModel: PostDatetimeCollectionViewCellViewModel) {
-        
+        let date = viewModel.date
+        label.text = .date(from: date)
     }
 }
 

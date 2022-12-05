@@ -48,11 +48,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     let colors: [UIColor] = [
         .systemBackground,
-        .green,
-        .blue,
-        .yellow,
-        .systemPink,
-        .orange
+        .systemBackground,
+        .systemBackground,
+        .systemBackground,
+        .systemBackground,
+        .systemBackground
     ]
     
 }
