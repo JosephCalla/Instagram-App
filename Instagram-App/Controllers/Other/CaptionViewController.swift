@@ -61,8 +61,11 @@ class CaptionViewController: UIViewController, UITextFieldDelegate, UITextViewDe
               }
                                            
         // Upload Post
-        StorageManager.shared.uploadPost(data: image.pngData(), id: newPostID) { success in
-            guard success else {
+        StorageManager.shared.uploadPost(
+            data: image.pngData(),
+            id: newPostID
+        ) { newPostDownloadURL in
+            guard let url = newPostDownloadURL else {
                 print("Error: Failed to upload")
                 return
             }
@@ -71,6 +74,7 @@ class CaptionViewController: UIViewController, UITextFieldDelegate, UITextViewDe
                 id: newPostID,
                 caption: caption,
                 postedDate: stringDate,
+                postURLString: url.absoluteString,
                 likers: []
             )
             

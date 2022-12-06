@@ -64,35 +64,14 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         username: String,
         completion: @escaping(Bool) -> Void
     ) {
-        
-        let group = DispatchGroup()
-        group.enter()
-        group.enter()
-        
-        var postURL: URL?
-        var profilePictureURL: URL?
-        StorageManager.shared.downloadURL(for: model) { [weak self] url in
-            defer {
-                group.leave()
-            }
-            postURL = url
-        }
-        
-        StorageManager.shared.profilePictureURL(for: username) { url in
-            defer {
-                group.leave()
-            }
-            profilePictureURL = url
-        }
-        
-        group.notify(queue: .main) {
-            guard let postURL = postURL,
+       
+        StorageManager.shared.profilePictureURL(for: username) { [weak self] profilePictureURL in
+            guard let postURL = URL(string: model.postURLString),
             let profilePhotoURL = profilePictureURL else {
                 fatalError("Failed to get URLs")
                 return
             }
             
-            // Mock Data
             let postData: [HomeFeedCellType] = [
                 .poster(
                     viewModel: PosterCollectionViewCellViewModel(
@@ -117,7 +96,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 )
             ]
             
-            self.viewModels.append(postData)
+            self?.viewModels.append(postData)
             completion(true)
         }
     }
