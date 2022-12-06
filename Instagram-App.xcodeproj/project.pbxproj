@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7217AB00293EA86E0035640E /* PostEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7217AAFF293EA86E0035640E /* PostEditViewController.swift */; };
+		7217AB02293EB5A10035640E /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7217AB01293EB5A10035640E /* PhotoCollectionViewCell.swift */; };
 		72319E552900371000DE43F9 /* SignInHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72319E542900371000DE43F9 /* SignInHeaderView.swift */; };
 		72319E5729003DBD00DE43F9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72319E5629003DBD00DE43F9 /* Extensions.swift */; };
 		72319E592900503F00DE43F9 /* IGTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72319E582900503F00DE43F9 /* IGTextField.swift */; };
@@ -62,6 +63,7 @@
 
 /* Begin PBXFileReference section */
 		7217AAFF293EA86E0035640E /* PostEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostEditViewController.swift; sourceTree = "<group>"; };
+		7217AB01293EB5A10035640E /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		72319E542900371000DE43F9 /* SignInHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInHeaderView.swift; sourceTree = "<group>"; };
 		72319E5629003DBD00DE43F9 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		72319E582900503F00DE43F9 /* IGTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGTextField.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 				72BDC69128FF53F800453E91 /* LaunchScreen.storyboard */,
 				72319E542900371000DE43F9 /* SignInHeaderView.swift */,
 				72319E582900503F00DE43F9 /* IGTextField.swift */,
+				7217AB01293EB5A10035640E /* PhotoCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -247,7 +250,6 @@
 				72BDC6A928FF5AB200453E91 /* TabBarViewController.swift */,
 				72BDC6A128FF5A6700453E91 /* ExploreViewController.swift */,
 				72BDC6A328FF5A7900453E91 /* CameraViewController.swift */,
-				7217AAFF293EA86E0035640E /* PostEditViewController.swift */,
 				72BDC6A528FF5A8400453E91 /* NotificationViewController.swift */,
 				72BDC6A728FF5A9100453E91 /* ProfileViewController.swift */,
 			);
@@ -263,6 +265,7 @@
 				72BDC6B228FF5B1600453E91 /* ListViewController.swift */,
 				72BDC6B428FF5B1D00453E91 /* PostViewController.swift */,
 				72BDC6B628FF5B2500453E91 /* SettingViewController.swift */,
+				7217AAFF293EA86E0035640E /* PostEditViewController.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -394,6 +397,7 @@
 				72BDC6C128FF5B8800453E91 /* AuthManager.swift in Sources */,
 				72BDC6AD28FF5ACC00453E91 /* SignInViewController.swift in Sources */,
 				72319E5729003DBD00DE43F9 /* Extensions.swift in Sources */,
+				7217AB02293EB5A10035640E /* PhotoCollectionViewCell.swift in Sources */,
 				72BDC6A828FF5A9100453E91 /* ProfileViewController.swift in Sources */,
 				72BDC6C928FF5BC400453E91 /* HapticsManager.swift in Sources */,
 				72773615293D70F600E11DEB /* PosterCollectionViewCell.swift in Sources */,

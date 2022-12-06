@@ -151,7 +151,7 @@ extension CameraViewController: AVCapturePhotoCaptureDelegate {
         let vc = PostEditViewController(image: image)
         if #available(iOS 14.0, *) {
             vc.navigationItem.backButtonDisplayMode = .minimal
-        } 
+        }
         navigationController?.pushViewController(vc, animated: false)
     }
 }
