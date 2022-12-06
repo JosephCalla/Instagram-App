@@ -25,25 +25,101 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     private func fetchPosts() {
-        // Mock Data
-        let postData: [HomeFeedCellType] = [
-            .poster(viewModel: PosterCollectionViewCellViewModel(
-                username: "Joseph",
-                profilePictureURL: URL(string: "https://media-exp1.licdn.com/dms/image/D4E03AQGVidajZPPrtg/profile-displayphoto-shrink_400_400/0/1669220037749?e=1675900800&v=beta&t=4FPTeT9GJZA5UB_ksa7flC_I9AzjO15clxjnrYw0Tx8")!
-                )
-            ),
-            .post(viewModel: PostCollectionViewCellViewModel(
-                postURL: URL(string: "https://play-lh.googleusercontent.com/Ew7HkAyuZeKrb93Cjhay-oUm5iJFA808RcRu_9ys2zqbZHPq3yceN_kL6Wo5Yb1DcCEC")!
-                )
-            ),
-            .actions(viewModel: PostActionsCollectionViewCellViewModel(isLiked: true)),
-            .likeCount(viewModel: PostLikesCollectionViewCellViewModel(likers: ["Girls :)"])),
-            .caption(viewModel: PostCaptionCollectionViewCellViewModel(username: "Joseph", caption: "Fist Post")),
-            .timestamp(viewModel: PostDatetimeCollectionViewCellViewModel(date: Date()))
-        ]
+        guard let username = UserDefaults.standard.string(forKey: "username") else {
+            return
+        }
+        DatabaseManager.shared.posts(for: username) { [weak self] result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let posts):
+                    //print("\n\n\n Posts: \(posts.count)")
+                    let group = DispatchGroup()
+                    
+                    posts.forEach { model in
+                        group.enter()
+                        self?.createViewModel(model: model, username: username, completion: { success in
+                            defer {
+                                group.leave()
+                            }
+                            
+                            if !success {
+                                print("Failed to create VM")
+                            }
+                        }
+                        )
+                    }
+                    
+                    group.notify(queue: .main) {
+                        self?.collectionView?.reloadData()
+                    }
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
+    }
+    
+    private func createViewModel(
+        model: Post,
+        username: String,
+        completion: @escaping(Bool) -> Void
+    ) {
         
-        viewModels.append(postData)
-        collectionView?.reloadData()
+        let group = DispatchGroup()
+        group.enter()
+        group.enter()
+        
+        var postURL: URL?
+        var profilePictureURL: URL?
+        StorageManager.shared.downloadURL(for: model) { [weak self] url in
+            defer {
+                group.leave()
+            }
+            postURL = url
+        }
+        
+        StorageManager.shared.profilePictureURL(for: username) { url in
+            defer {
+                group.leave()
+            }
+            profilePictureURL = url
+        }
+        
+        group.notify(queue: .main) {
+            guard let postURL = postURL,
+            let profilePhotoURL = profilePictureURL else {
+                fatalError("Failed to get URLs")
+                return
+            }
+            
+            // Mock Data
+            let postData: [HomeFeedCellType] = [
+                .poster(
+                    viewModel: PosterCollectionViewCellViewModel(
+                        username: username,
+                        profilePictureURL: profilePhotoURL
+                    )
+                ),
+                .post(viewModel: PostCollectionViewCellViewModel(
+                    postURL: postURL
+                )
+                ),
+                .actions(viewModel: PostActionsCollectionViewCellViewModel(isLiked: false)),
+                .likeCount(viewModel: PostLikesCollectionViewCellViewModel(likers: [])),
+                .caption(viewModel: PostCaptionCollectionViewCellViewModel(
+                    username: username,
+                    caption: model.caption
+                )),
+                .timestamp(
+                    viewModel: PostDatetimeCollectionViewCellViewModel(
+                        date: DateFormatter.formatter.date(from: model.postedDate) ?? Date()
+                    )
+                )
+            ]
+            
+            self.viewModels.append(postData)
+            completion(true)
+        }
     }
     
     let colors: [UIColor] = [
@@ -127,7 +203,7 @@ extension HomeViewController {
         let cellType = viewModels[indexPath.section][indexPath.row]
         switch cellType {
         case .poster(let viewModel):
-           guard let cell = collectionView.dequeueReusableCell(
+            guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: "PosterCollectionViewCell", for: indexPath
             ) as? PosterCollectionViewCell else {
                 fatalError()
@@ -137,51 +213,51 @@ extension HomeViewController {
             return cell
         case .post(let viewModel):
             guard let cell = collectionView.dequeueReusableCell(
-                 withReuseIdentifier: "PostCollectionViewCell", for: indexPath
-             ) as? PostCollectionViewCell else {
-                 fatalError()
-             }
-             cell.delegate = self
-             cell.configure(with: viewModel)
-             return cell
+                withReuseIdentifier: "PostCollectionViewCell", for: indexPath
+            ) as? PostCollectionViewCell else {
+                fatalError()
+            }
+            cell.delegate = self
+            cell.configure(with: viewModel)
+            return cell
         case .actions(let viewModel):
             guard let cell = collectionView.dequeueReusableCell(
-                 withReuseIdentifier: "PostActionCollectionViewCell", for: indexPath
-             ) as? PostActionCollectionViewCell else {
-                 fatalError()
-             }
-             cell.delegate = self
-             cell.configure(with: viewModel)
-             return cell
+                withReuseIdentifier: "PostActionCollectionViewCell", for: indexPath
+            ) as? PostActionCollectionViewCell else {
+                fatalError()
+            }
+            cell.delegate = self
+            cell.configure(with: viewModel)
+            return cell
         case .likeCount(let viewModel):
             guard let cell = collectionView.dequeueReusableCell(
-                 withReuseIdentifier: "PostLikesCollectionViewCell", for: indexPath
-             ) as? PostLikesCollectionViewCell else {
-                 fatalError()
-             }
-             cell.delegate = self
-             cell.configure(with: viewModel)
-             return cell
+                withReuseIdentifier: "PostLikesCollectionViewCell", for: indexPath
+            ) as? PostLikesCollectionViewCell else {
+                fatalError()
+            }
+            cell.delegate = self
+            cell.configure(with: viewModel)
+            return cell
         case .caption(let viewModel):
             guard let cell = collectionView.dequeueReusableCell(
-                 withReuseIdentifier: "PostCaptionCollectionViewCell", for: indexPath
-             ) as? PostCaptionCollectionViewCell else {
-                 fatalError()
-             }
-             cell.delegate = self
-             cell.configure(with: viewModel)
-             cell.contentView.backgroundColor = colors[indexPath.row]
-             return cell
+                withReuseIdentifier: "PostCaptionCollectionViewCell", for: indexPath
+            ) as? PostCaptionCollectionViewCell else {
+                fatalError()
+            }
+            cell.delegate = self
+            cell.configure(with: viewModel)
+            cell.contentView.backgroundColor = colors[indexPath.row]
+            return cell
         case .timestamp(let viewModel):
             guard let cell = collectionView.dequeueReusableCell(
-                 withReuseIdentifier: "PostDateCollectionViewCell", for: indexPath
-             ) as? PostDateCollectionViewCell else {
-                 fatalError()
-             }
-             cell.configure(with: viewModel)
-             cell.contentView.backgroundColor = colors[indexPath.row]
-             return cell
-        }        
+                withReuseIdentifier: "PostDateCollectionViewCell", for: indexPath
+            ) as? PostDateCollectionViewCell else {
+                fatalError()
+            }
+            cell.configure(with: viewModel)
+            cell.contentView.backgroundColor = colors[indexPath.row]
+            return cell
+        }
     }
 }
 
@@ -204,7 +280,7 @@ extension HomeViewController: PosterCollectionViewCellDelegate {
 
 extension HomeViewController: PostCollectionViewCellDelegate {
     func postCollectionViewCellDidLike(_ cell: PostCollectionViewCell) {
-     print("Double Tapped")
+        print("Double Tapped")
     }
 }
 
