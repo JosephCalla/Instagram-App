@@ -7,24 +7,40 @@
 
 import UIKit
 
-class ExploreViewController: UIViewController {
-
+class ExploreViewController: UIViewController, UISearchResultsUpdating {
+    
+    private let searchVC = UISearchController(searchResultsController: SearchResultsViewController())
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Explore"
         view.backgroundColor = .systemBackground
-        
+        (searchVC.searchResultsController  as? SearchResultsViewController)?.delegate = self
+        searchVC.searchBar.placeholder = "Search..."
+        searchVC.searchResultsUpdater = self
+        navigationItem.searchController = searchVC
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let resultVC = searchController.searchResultsController as? SearchResultsViewController,
+              let query = searchController.searchBar.text,
+              !query.trimmingCharacters(in: .whitespaces).isEmpty else {
+            return
+        }
+        
+        DatabaseManager.shared.findUsers(with: query) { results in
+            DispatchQueue.main.async {
+                resultVC.update(with: results)
+            }
+        }
     }
-    */
+}
 
+extension ExploreViewController: SearchResultsViewControllerDelegate {
+    func searchResultsViewController(_ vc: SearchResultsViewController, didSelectResultWith user: User) {
+        let vc = ProfileViewController(user: user)
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    
 }
