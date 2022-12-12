@@ -83,6 +83,7 @@ class CaptionViewController: UIViewController, UITextFieldDelegate, UITextViewDe
                 guard finished else {
                     return
                 }
+                
                 DispatchQueue.main.async {
                     self?.tabBarController?.tabBar.isHidden = true
                     self?.tabBarController?.selectedIndex = 0
