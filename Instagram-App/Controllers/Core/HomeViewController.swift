@@ -265,19 +265,19 @@ extension HomeViewController: PostCollectionViewCellDelegate {
 
 
 extension HomeViewController: PostActionCollectionViewCellDelegate {
-    func postActionCollectionViewCellDidTapLike(_ cell: PostActionCollectionViewCell, isLiked: Bool) {
-        // Call DB to update like state
-    }
-    
     func postActionCollectionViewCellDidTapComment(_ cell: PostActionCollectionViewCell) {
-        let vc = PostViewController()
-        vc.title = "Post"
-        navigationController?.pushViewController(vc, animated: true)
+//        let vc = PostViewController(post: post)
+//        vc.title = "Post"
+//        navigationController?.pushViewController(vc, animated: true)
     }
     
     func postActionCollectionViewCellDidTapShare(_ cell: PostActionCollectionViewCell) {
         let vc = UIActivityViewController(activityItems: ["Sharing from Joseph's App"], applicationActivities: [])
         present(vc, animated: true)
+    }
+    
+    func postActionCollectionViewCellDidTapLike(_ cell: PostActionCollectionViewCell, isLiked: Bool) {
+        // Call DB to update like state
     }
 }
 

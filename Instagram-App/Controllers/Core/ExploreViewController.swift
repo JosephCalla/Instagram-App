@@ -9,7 +9,8 @@ import UIKit
 
 class ExploreViewController: UIViewController, UISearchResultsUpdating {
     private let searchVC = UISearchController(searchResultsController: SearchResultsViewController())
-    
+    private var posts = [Post]()
+
     private let colletionView: UICollectionView = {
         let layout = UICollectionViewCompositionalLayout { index, _ -> NSCollectionLayoutSection? in
             let item =  NSCollectionLayoutItem(
@@ -76,7 +77,7 @@ class ExploreViewController: UIViewController, UISearchResultsUpdating {
         
         return collectionView
     }()
-    
+        
     // MARK: Init
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,12 +90,22 @@ class ExploreViewController: UIViewController, UISearchResultsUpdating {
         view.addSubview(colletionView)
         colletionView.delegate = self
         colletionView.dataSource = self
+        fetchData()
         
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         colletionView.frame = view.bounds
+    }
+    
+    private func fetchData() {
+        DatabaseManager.shared.explorePosts { [weak self] posts in
+            DispatchQueue.main.async {
+                self?.posts = posts
+                self?.colletionView.reloadData()
+            }
+        }
     }
     
     func updateSearchResults(for searchController: UISearchController) {
@@ -117,22 +128,23 @@ extension ExploreViewController: SearchResultsViewControllerDelegate {
         let vc = ProfileViewController(user: user)
         navigationController?.pushViewController(vc, animated: true)
     }
-    
-    
 }
 
 extension ExploreViewController: UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 30
+        return posts.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.identifier,
-                                                            for: indexPath) as? PhotoCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: PhotoCollectionViewCell.identifier,
+            for: indexPath
+        ) as? PhotoCollectionViewCell else {
             fatalError()
         }
         
-        cell.configure(with: UIImage(named: "test"))
+        let model = posts[indexPath.row]
+        cell.configure(with: URL(string: model.postURLString))
         return cell
     }
 }

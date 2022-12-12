@@ -36,7 +36,12 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         super.prepareForReuse()
         imageView.image = nil
     }
+   
     func configure(with image: UIImage?) {
         imageView.image = image
+    }
+    
+    func configure(with url: URL?) {
+        imageView.sd_setImage(with: url)
     }
 }
