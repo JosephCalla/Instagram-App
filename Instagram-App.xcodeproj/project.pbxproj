@@ -60,6 +60,11 @@
 		72BDC6D628FF5D3800453E91 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 72BDC6D528FF5D3800453E91 /* FirebaseStorage */; };
 		72BDC6D828FF69B900453E91 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 72BDC6D728FF69B900453E91 /* GoogleService-Info.plist */; };
 		72BDC6DB28FF6B5A00453E91 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 72BDC6DA28FF6B5A00453E91 /* FirebaseFirestore */; };
+		72FA7FEC2947D68A00281780 /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72FA7FEB2947D68A00281780 /* NotificationTableViewCell.swift */; };
+		72FA7FEE2947D6DE00281780 /* FollowNotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72FA7FED2947D6DE00281780 /* FollowNotificationTableViewCell.swift */; };
+		72FA7FF02947D74E00281780 /* CommentNotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72FA7FEF2947D74E00281780 /* CommentNotificationTableViewCell.swift */; };
+		72FA7FF22947D77200281780 /* LikeNotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72FA7FF12947D77200281780 /* LikeNotificationTableViewCell.swift */; };
+		72FA7FF42948059B00281780 /* NotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72FA7FF32948059B00281780 /* NotificationsManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -110,6 +115,11 @@
 		72BDC6C628FF5BBB00453E91 /* AnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
 		72BDC6C828FF5BC400453E91 /* HapticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsManager.swift; sourceTree = "<group>"; };
 		72BDC6D728FF69B900453E91 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		72FA7FEB2947D68A00281780 /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
+		72FA7FED2947D6DE00281780 /* FollowNotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowNotificationTableViewCell.swift; sourceTree = "<group>"; };
+		72FA7FEF2947D74E00281780 /* CommentNotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentNotificationTableViewCell.swift; sourceTree = "<group>"; };
+		72FA7FF12947D77200281780 /* LikeNotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeNotificationTableViewCell.swift; sourceTree = "<group>"; };
+		72FA7FF32948059B00281780 /* NotificationsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +188,7 @@
 		72BDC69A28FF55E800453E91 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				72FA7FEA2947D65A00281780 /* Notification Cells */,
 				72773613293D70CE00E11DEB /* Home Cells */,
 				72BDC69128FF53F800453E91 /* LaunchScreen.storyboard */,
 				72319E542900371000DE43F9 /* SignInHeaderView.swift */,
@@ -241,6 +252,7 @@
 				72BDC6C428FF5BAD00453E91 /* StorageManager.swift */,
 				72BDC6C628FF5BBB00453E91 /* AnalyticsManager.swift */,
 				72BDC6C828FF5BC400453E91 /* HapticsManager.swift */,
+				72FA7FF32948059B00281780 /* NotificationsManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -278,6 +290,17 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		72FA7FEA2947D65A00281780 /* Notification Cells */ = {
+			isa = PBXGroup;
+			children = (
+				72FA7FEB2947D68A00281780 /* NotificationTableViewCell.swift */,
+				72FA7FED2947D6DE00281780 /* FollowNotificationTableViewCell.swift */,
+				72FA7FEF2947D74E00281780 /* CommentNotificationTableViewCell.swift */,
+				72FA7FF12947D77200281780 /* LikeNotificationTableViewCell.swift */,
+			);
+			path = "Notification Cells";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -372,10 +395,13 @@
 				72BDC6B328FF5B1600453E91 /* ListViewController.swift in Sources */,
 				72773617293D71DC00E11DEB /* PostCollectionViewCell.swift in Sources */,
 				72773609293D65A400E11DEB /* PostActionsCollectionViewCellViewModel.swift in Sources */,
+				72FA7FF02947D74E00281780 /* CommentNotificationTableViewCell.swift in Sources */,
 				72BDC6B528FF5B1D00453E91 /* PostViewController.swift in Sources */,
 				72BDC6A228FF5A6700453E91 /* ExploreViewController.swift in Sources */,
+				72FA7FEE2947D6DE00281780 /* FollowNotificationTableViewCell.swift in Sources */,
 				72BDC6B728FF5B2500453E91 /* SettingViewController.swift in Sources */,
 				72BDC6C728FF5BBB00453E91 /* AnalyticsManager.swift in Sources */,
+				72FA7FF22947D77200281780 /* LikeNotificationTableViewCell.swift in Sources */,
 				72BDC6A428FF5A7900453E91 /* CameraViewController.swift in Sources */,
 				72BDC6B928FF5B4A00453E91 /* User.swift in Sources */,
 				72773605293D652300E11DEB /* PosterColletionViewCellViewModel.swift in Sources */,
@@ -398,9 +424,11 @@
 				72BDC6BD28FF5B6600453E91 /* Relationship.swift in Sources */,
 				7277360D293D664600E11DEB /* PostCaptionCollectionViewCellViewModel.swift in Sources */,
 				72BDC6BB28FF5B5200453E91 /* Post.swift in Sources */,
+				72FA7FEC2947D68A00281780 /* NotificationTableViewCell.swift in Sources */,
 				72BDC6C128FF5B8800453E91 /* AuthManager.swift in Sources */,
 				72BDC6AD28FF5ACC00453E91 /* SignInViewController.swift in Sources */,
 				72319E5729003DBD00DE43F9 /* Extensions.swift in Sources */,
+				72FA7FF42948059B00281780 /* NotificationsManager.swift in Sources */,
 				7217AB02293EB5A10035640E /* PhotoCollectionViewCell.swift in Sources */,
 				72BDC6A828FF5A9100453E91 /* ProfileViewController.swift in Sources */,
 				72BDC6C928FF5BC400453E91 /* HapticsManager.swift in Sources */,
